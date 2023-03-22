@@ -4,9 +4,13 @@ Data Visualizartion course assessments
 I have written a python script that utilizes Pandas, Plotly, and Streamlit web visualization libraries. The script generates a web app displaying sunshine data (sunshine.csv) that is provided for the courses assessment.
 
 Requirements:
+
 Anaconda Python 3.10.9 (lower versions donot work with Streamlit!)
+
 Pandas 1.5.3
+
 Plotly 5.9.0
+
 Streamlit 1.20.0 (conda-forge)
 
 Execution of script:
@@ -116,3 +120,6 @@ Customize the layout of the chart for the selected city.
 
 st.plotly_chart(fig_city): 
 Display the Plotly scatter plot for the selected city in the Streamlit app.
+
+
+Link to the web app: https://zelihalagoz-dataviz-stream-uzohaa.streamlit.app/ 
