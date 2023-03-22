@@ -1,6 +1,4 @@
 # packages in environment at /opt/miniconda3/envs/py311:
-numpy
 pandas  
 plotly
-python 
 streamlit
