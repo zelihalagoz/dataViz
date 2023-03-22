@@ -1,2 +1,118 @@
 # dataViz
 Data Visualizartion course assessments
+
+I have written a python script that utilizes Pandas, Plotly, and Streamlit web visualization libraries. The script generates a web app displaying sunshine data (sunshine.csv) that is provided for the courses assessment.
+
+Requirements:
+Anaconda Python 3.10.9 (lower versions donot work with Streamlit!)
+Pandas 1.5.3
+Plotly 5.9.0
+Streamlit 1.20.0 (conda-forge)
+
+Execution of script:
+streamlit run stream.py
+
+Line by line code descriptions is given below:
+
+import streamlit as st: 
+Import the Streamlit library and rename it to ‘st’. 
+The streamlit module allows for the creation of web applications in Python.
+
+
+import pandas as pd: 
+Import the Pandas library and rename it to ‘pd’. 
+The pandas module is a powerful library for data manipulation and analysis.
+
+
+import numpy as np: 
+Import the Numpy library and rename it to ‘np’. 
+The numpy module provides support for large, multi-dimensional arrays and matrices in Python.
+
+
+import plotly.express as px: 
+Import the Plotly Express library and rename it to ‘px’. 
+The plotly module provides interactive visualization tools, while plotly.express 
+is a high-level interface for creating a variety of charts.
+
+
+import plotly.graph_objs as go: 
+Import the Graph Objects module from Plotly, which allows for more control over 
+the creation of charts compared to plotly.express.
+
+
+st.title('Hours of sunshine in US cities'): 
+Add a title to the web application stating the purpose of the dashboard.
+
+
+@st.cache_data: 
+Decorator that caches the output of the function to improve performance.
+
+
+def load_data(nrows=None):: 
+Define a function that loads a limited number of rows from a CSV file named “sunshine.csv” 
+and returns a Pandas dataframe.
+
+
+data_load_state = st.text('Loading data...'): 
+Notify the user that the data is being loaded.
+
+
+df = load_data(): 
+Load data into a dataframe.
+
+
+if st.checkbox('Show raw data'):: 
+Add a checkbox to allow the user to view the raw data.
+
+
+st.subheader('sunshine by city'): 
+Add a subtitle to the section of the dashboard containing the scatter plot.
+
+
+fig = px.scatter(df, x='month', y='sunshine', size='sunshine', 
+                 color='city', hover_data=hov_data, hover_name='city', 
+                 title=' Annual sunshine data in US cities', size_max=25): 
+Define a scatter plot where the x-axis represents the month, the y-axis represents 
+the hours of sunshine, and the size of the points represents the hours of sunshine as well. 
+The color of the points represents the city, and the hover_data argument adds additional 
+information to the visualization when a point is hovered over.
+
+
+mean_sunshine = df['sunshine'].mean(): 
+Calculate the mean value for the “sunshine” column of the dataframe.
+
+
+mean_line = go.layout.Shape(type='line', xref='paper', yref='y', x0=0, 
+                            x1=1, y0=mean_sunshine, y1=mean_sunshine, 
+                            line=dict(color='red', dash='dash')): 
+Create a horizontal line for the mean sunshine hours.
+
+
+fig.update_layout(...): 
+Customize the chart layout features, including the title, axes titles, legend title, 
+hover label, font, shapes, and chart height.
+
+
+st.plotly_chart(fig): 
+Display the Plotly scatter plot in the Streamlit app.
+
+
+city_to_filter = st.selectbox('city', df['city'].unique()): 
+Add a drop-down to the sidebar that allows the user to select a city to view as a scatter plot.
+
+
+filtered_city = df[df['city'] == city_to_filter]: Filter the dataframe according to the selected city.
+
+
+fig_city = px.scatter(filtered_city, x="month", y="sunshine", 
+                      color="city", hover_data=hov_data, size="sunshine"): 
+Define a scatter plot for the selected city, where points are colored based on the city and 
+the size is based on the hours of sunshine.
+
+
+fig_city.update_layout(...): 
+Customize the layout of the chart for the selected city.
+
+
+st.plotly_chart(fig_city): 
+Display the Plotly scatter plot for the selected city in the Streamlit app.
