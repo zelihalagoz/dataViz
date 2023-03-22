@@ -1,7 +1,6 @@
 # packages in environment at /opt/miniconda3/envs/py311:
 #
 # Name                    Version                   Build  Channel
-alabaster                 0.7.12             pyhd3eb1b0_0  
 anaconda                  2023.03                 py310_0  
 anyio                     3.5.0           py310hca03da5_0  
 appdirs                   1.4.4              pyhd3eb1b0_0  
