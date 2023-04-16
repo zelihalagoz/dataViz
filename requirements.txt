@@ -2,3 +2,5 @@
 pandas  
 plotly
 streamlit
+pyjstat
+requests
